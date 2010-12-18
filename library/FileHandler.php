@@ -22,6 +22,7 @@ class Webgrind_FileHandler{
 	}
 		
 	private function __construct(){
+		
 		// Get list of files matching the defined format
 		$files = $this->getFiles(Webgrind_Config::xdebugOutputFormat(), Webgrind_Config::xdebugOutputDir());
 		
@@ -85,6 +86,7 @@ class Webgrind_FileHandler{
 		else 
 		    $selfFile = '';
 		
+
 		foreach($list as $file){
 			$absoluteFilename = $dir.$file;
 

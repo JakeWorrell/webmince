@@ -6,7 +6,9 @@
 
 class Webgrind_MasterConfig
 {
-    static $webgrindVersion = '1.02';
+	static $appName = 'webmince';
+	static $appTagline = 'based on webgrind 1.02';
+    static $webgrindVersion = '0.1';
 }
 
 require 'config.php';

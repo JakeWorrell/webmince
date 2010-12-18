@@ -174,3 +174,18 @@ a.load_invocations {
 	border: 1px solid #333;
 	padding: 2px;
 }
+
+.breakdown {
+	display: block;
+	height: 20px;
+	float: left;
+}
+
+.breakdown.left  {
+	-webkit-border-radius: 10px 0 0  10px;
+}
+.breakdown.right  {
+	-webkit-border-radius: 0 10px 10px 0;
+}
+
+                       
