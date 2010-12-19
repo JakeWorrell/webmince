@@ -51,21 +51,7 @@
 					$("#runtime_sum").html(data.summedRunTime);
 					$("#runs").html(data.runs);
 					
-					$("#breakdown").empty();
-					var breakdown_sum = Math.ceil(data.breakdown['internal'])+Math.ceil(data.breakdown['procedural'])+Math.ceil(data.breakdown['class'])+Math.ceil(data.breakdown['include']);
-					var breakdown_colors = ['rgb(62,108,224)', 'rgb(191,191,191)','rgb(167,228,135)', 'rgb(248,136,37)'];
-					
-					$.each(data.breakdown,function(item,value){
-						if (value>0){
-							var itemSize = Math.max(10,Math.floor(value/breakdown_sum*32)*10);
-							if (breakdown_colors.length>0){
-								color = breakdown_colors.shift();
-							}
-							addToBreakdown(item, itemSize, color);
-						}
-					});
-					$('#breakdown :first-child').addClass('left');
-					$('#breakdown :last-child').addClass('right');
+					setupBreakdown(data.breakdown);
 					
 					$("#hello_message").hide();
 					$("#trace_view").show();
@@ -78,6 +64,24 @@
 			);
 		}
 		
+		function setupBreakdown(data){
+			$("#breakdown").empty();
+			var breakdown_sum = Math.ceil(data['internal'])+Math.ceil(data['procedural'])+Math.ceil(data['class'])+Math.ceil(data['include']);
+			var breakdown_colors = ['rgb(62,108,224)', 'rgb(191,191,191)','rgb(167,228,135)', 'rgb(248,136,37)'];
+
+			$.each(data,function(item,value){
+				if (value>0){
+					var itemSize = Math.max(10,Math.floor(value/breakdown_sum*32)*10);
+					if (breakdown_colors.length>0){
+						color = breakdown_colors.shift();
+					}
+					addToBreakdown(item, itemSize, color);
+				}
+			});
+			$('#breakdown :first-child').addClass('left');
+			$('#breakdown :last-child').addClass('right');
+
+		}
 		function addToBreakdown(name,size,color) {
 			var element = $('<div class = "breakdown ' + name + '" />');
 			element.css({
