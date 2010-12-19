@@ -53,7 +53,7 @@
 					
 					$("#breakdown").empty();
 					var breakdown_sum = data.breakdown['internal']+data.breakdown['procedural']+data.breakdown['class']+data.breakdown['include'];
-					var breakdown_colors = ['blue', 'silver','greenyellow', 'orange'];
+					var breakdown_colors = ['rgb(62,108,224)', 'rgb(191,191,191)','rgb(167,228,135)', 'rgb(248,136,37)'];
 					
 					var color = breakdown_colors.shift();
 					addToBreakdown('left', 10, color);
@@ -64,7 +64,7 @@
 						}
 					});
 					addToBreakdown('right', 10, color);
-					$("#breakdown").append('<div title="internal functions, include/require, class methods and procedural functions." style="background:url(img/gradient_markers.png);position:relative;left:10px;width:301px;height:20px"></div>');
+					//$("#breakdown").append('<div title="internal functions, include/require, class methods and procedural functions." style="background:url(img/gradient_markers.png);position:relative;left:10px;width:301px;height:20px"></div>');
 					
 					$("#hello_message").hide();
 					$("#trace_view").show();
@@ -83,29 +83,35 @@
 				'width': size,
 				'background-color': color
 			});
-		//	element.hover(function(){
-		//		$(this).css({'background-color': colorAdd($(this).css('background-color'),50,50,50)});
-		//	},function(){
-		//		$(this).css({'background-color': color});
-		//	});
+			element.hover(function(){
+				$(this).css({'background-color': lighten($(this).css('background-color'),.2)});
+			},function(){
+				$(this).css({'background-color': color});
+			});
 			
 			$("#breakdown").append(element);
 	
 		}
-		// public static Color Lighten(Color inColor, double inAmount)
+		
+		function lighten(rgbString, inAmount) {
+			var parts = rgbString
+				.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+			var r = Math.min(255, Math.round (parseInt(parts[1]) + 255 * inAmount));
+			var g = Math.min(255, Math.round (parseInt(parts[2]) + 255 * inAmount));
+			var b = Math.min(255, Math.round (parseInt(parts[3]) + 255 * inAmount));
+			
+			return 'rgb(' + r + ',' + g + ',' + b + ')';
+		}
 		//	{
 		//	  return Color.FromArgb(
 		//		inColor.A,
-		//		(int) Math.Min(255, inColor.R + 255 * inAmount),
-		//		(int) Math.Min(255, inColor.G + 255 * inAmount),
-		//		(int) Math.Min(255, inColor.B + 255 * inAmount) );
+		
 		//	}
 		function colorAdd(original,r,g,b) {
 			var rgbString = original; // get this in whatever way.
 
-			var parts = rgbString
-					.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-			return 'rgb(' + (parseInt(parts[1])+r) + ',' + (parseInt(parts[2])+g) + ',' + (parseInt(parts[3])+b) + ')';
+			
+			return 
 		}
 		
 		function reloadFilelist(){

@@ -176,6 +176,7 @@ a.load_invocations {
 }
 
 .breakdown {
+	background-image: url('../img/gradient.png');
 	display: block;
 	height: 20px;
 	float: left;
