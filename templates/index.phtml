@@ -52,19 +52,21 @@
 					$("#runs").html(data.runs);
 					
 					$("#breakdown").empty();
-					var breakdown_sum = data.breakdown['internal']+data.breakdown['procedural']+data.breakdown['class']+data.breakdown['include'];
+					var breakdown_sum = Math.ceil(data.breakdown['internal'])+Math.ceil(data.breakdown['procedural'])+Math.ceil(data.breakdown['class'])+Math.ceil(data.breakdown['include']);
 					var breakdown_colors = ['rgb(62,108,224)', 'rgb(191,191,191)','rgb(167,228,135)', 'rgb(248,136,37)'];
 					
-					var color = breakdown_colors.shift();
-					addToBreakdown('left', 10, color);
 					$.each(data.breakdown,function(item,value){
-						addToBreakdown(item, Math.floor(value/breakdown_sum*300), color);
-						if (breakdown_colors.length>0){
-							color = breakdown_colors.shift();
+						if (value>0){
+							var itemSize = Math.max(10,Math.floor(value/breakdown_sum*32)*10);
+							if (breakdown_colors.length>0){
+								color = breakdown_colors.shift();
+							}
+							addToBreakdown(item, itemSize, color);
 						}
 					});
-					addToBreakdown('right', 10, color);
-					//$("#breakdown").append('<div title="internal functions, include/require, class methods and procedural functions." style="background:url(img/gradient_markers.png);position:relative;left:10px;width:301px;height:20px"></div>');
+					$('#breakdown :first-child').addClass('left');
+					$('#breakdown :last-child').addClass('right');
+					$("#breakdown").append('<div title="internal functions, include/require, class methods and procedural functions." style="background:url(img/gradient_markers.png);position:relative;left:10px;width:301px;height:20px"></div>');
 					
 					$("#hello_message").hide();
 					$("#trace_view").show();
@@ -368,7 +370,7 @@
         	    <span id="data_file"></span> @ <span id="mtime"></span>
         	</div>
         	<div style="float:right;">
-        	    <div id="breakdown" style="margin-bottom:5px;width:320px;height:20px"></div>
+        	    <div id="breakdown"></div>
         	    <span id="invocation_sum"></span> different functions called in <span id="runtime_sum"></span> milliseconds (<span id="runs"></span> runs, <span id="shown_sum"></span> shown)
         	</div>
         	<div style="clear:both"></div>

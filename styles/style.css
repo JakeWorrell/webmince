@@ -175,18 +175,30 @@ a.load_invocations {
 	padding: 2px;
 }
 
+#breakdown {
+	margin-bottom:5px;
+	width:320px;
+	height:20px;
+}
 .breakdown {
 	background-image: url('../img/gradient.png');
 	display: block;
 	height: 20px;
 	float: left;
+	border: none;
 }
 
 .breakdown.left  {
-	-webkit-border-radius: 10px 0 0  10px;
+    -moz-border-radius: 10px 0 0 10px;
+    -webkit-border-radius: 10px 0 0 10px;
+    -khtml-border-radius: 10px 0 0 10px;
+    border-radius: 10px 0 0 10px;
 }
 .breakdown.right  {
-	-webkit-border-radius: 0 10px 10px 0;
+	-moz-border-radius: 0 10px 10px 0;
+    -webkit-border-radius: 0 10px 10px 0;
+    -khtml-border-radius: 0 10px 10px 0;
+    border-radius: 0 10px 10px 0;
 }
 
                        
