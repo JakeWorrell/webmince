@@ -83,14 +83,29 @@
 			$('#breakdown :last-child').addClass('right');
 
 		}
+		
 		function addToBreakdown(name,size,color) {
 			var element = $('<div class = "breakdown ' + name + '" />');
 			element.css({
 				'width': size,
 				'background-color': color
 			});
+			
+			element.qtip({
+				content: name,
+				style: {
+					name: 'cream'
+				},
+				position: {
+					corner: {
+						target: 'bottomMiddle',
+						tooltip: 'topMiddle'
+					}
+				}
+			});
+			
 			element.hover(function(){
-				$(this).css({'background-color': lighten($(this).css('background-color'),.2)});
+				$(this).css({'background-color': lighten(color,.2)});
 			},function(){
 				$(this).css({'background-color': color});
 			});
@@ -108,7 +123,7 @@
 			
 			return 'rgb(' + r + ',' + g + ',' + b + ')';
 		}
-		
+	
 		function reloadFilelist(){
 			$.getJSON("index.php",
 				{'op':'file_list'},
