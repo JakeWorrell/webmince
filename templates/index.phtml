@@ -9,6 +9,7 @@
 	<script src="js/jquery.blockUI.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery.tablesorter.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery.selectboxes.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.qtip-1.0.0-rc3.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/sprintf.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" charset="utf-8">
 		var fileUrlFormat = '<?php echo Webgrind_Config::$fileUrlFormat?>';
@@ -106,17 +107,6 @@
 			var b = Math.min(255, Math.round (parseInt(parts[3]) + 255 * inAmount));
 			
 			return 'rgb(' + r + ',' + g + ',' + b + ')';
-		}
-		//	{
-		//	  return Color.FromArgb(
-		//		inColor.A,
-		
-		//	}
-		function colorAdd(original,r,g,b) {
-			var rgbString = original; // get this in whatever way.
-
-			
-			return 
 		}
 		
 		function reloadFilelist(){
